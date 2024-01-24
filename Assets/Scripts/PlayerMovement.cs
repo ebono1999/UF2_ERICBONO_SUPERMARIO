@@ -14,14 +14,23 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer render;
 
+    public Animator anim;
+
+    public Rigidbody2D rBody;
+
+    public GroundSensor sensor;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {   //Teletransporta al personaje a una nueva posicion que es la que sale en la variable new position
         //transform.position = newPosition;
 
-        render= GetComponent <SpriteRenderer>();
-
+        render= GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        rBody = GetComponent<Rigidbody2D>();
 
     }
 
@@ -47,10 +56,25 @@ public class PlayerMovement : MonoBehaviour
         if(inputHorizontal < 0)
         {
             render.flipX = true;
+            anim.SetBool("IsRunning", true);
+            anim.SetBool("IsJumping", true);
         }
         else if(inputHorizontal > 0)
         {
             render.flipX = false;
+            anim.SetBool("IsRunning", true);
+            anim.SetBool("IsJumping", true);
+        }
+        else
+        {
+            anim.SetBool("IsRunning", false);
+
+        }
+
+        if (Input.GetButtonDown("jump") && sensor.isGrounded == true)
+        {
+            rBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            anim.SetBool("IsJumping", true);
         }
 
 
