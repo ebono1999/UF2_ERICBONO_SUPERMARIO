@@ -12,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
 
     public bool jump = false;
 
+    public SpriteRenderer render;
+
+
     // Start is called before the first frame update
     void Start()
     {   //Teletransporta al personaje a una nueva posicion que es la que sale en la variable new position
         //transform.position = newPosition;
 
-        
+        render= GetComponent <SpriteRenderer>();
 
 
     }
@@ -39,6 +42,15 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Estoy en el suelo");
             
 
+        }
+
+        if(inputHorizontal < 0)
+        {
+            render.flipX = true;
+        }
+        else if(inputHorizontal > 0)
+        {
+            render.flipX = false;
         }
 
 
