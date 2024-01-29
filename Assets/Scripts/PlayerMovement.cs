@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             anim.SetBool("IsJumping", true);
+            
         }
 
 
