@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GroundSensor sensor;
 
+    public float jumpForce = 10;
+
 
 
 
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (Input.GetButtonDown("jump") && sensor.isGrounded == true)
+        if (Input.GetButtonDown("Jump") && sensor.isGrounded == true)
         {
             rBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             anim.SetBool("IsJumping", true);
